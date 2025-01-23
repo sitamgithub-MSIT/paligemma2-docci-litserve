@@ -1,6 +1,6 @@
 # PaliGemma2 LitServe
 
-[PaliGemma 2](https://huggingface.co/collections/google/paligemma-2-release-67500e1e1dbfdd4dee27ba48) an updated vision-language model, leverages **Gemma 2** and **SigLIP** for superior performance on various vision-language tasks, processing images and text to generate multi-lingual text outputs. This project shows how to create a self-hosted, private API that deploys a PaliGemma2 [vision language model](https://huggingface.co/google/paligemma2-3b-ft-docci-448) with LitServe, an easy-to-use, flexible serving engine for AI models built on FastAPI.
+[PaliGemma 2](https://huggingface.co/collections/google/paligemma-2-release-67500e1e1dbfdd4dee27ba48) is an updated vision-language model that leverages **Gemma 2** and **SigLIP** for superior performance on various vision-language tasks. It processes images and text to generate multilingual text outputs. This project shows how to create a self-hosted, private API that deploys a PaliGemma2 [vision language model](https://huggingface.co/google/paligemma2-3b-ft-docci-448) with LitServe, an easy-to-use, flexible serving engine for AI models built on FastAPI.
 
 ## Project Structure
 
@@ -11,7 +11,7 @@ The project is structured as follows:
 - `LICENSE`: The license file for the project.
 - `README.md`: The README file that contains information about the project.
 - `assets`: The folder containing screenshots for working on the application.
-- `images`: The folder containing images for the test purpose.
+- `images`: The folder containing images for testing purposes.
 - `.env.example`: The example file for environment variables.
 - `.gitignore`: The file containing the list of files and directories to be ignored by Git.
 
@@ -31,13 +31,13 @@ To get started with this project, follow the steps below:
 3. Open a new terminal window.
 4. Run the client: `python client.py`
 
-Now, you can see the output of the model based on the input request. The model will generate caption for the images provided in the `images` folder in selected language.
+Now, you can see the model's output based on the input request. The model will generate captions in the selected language for the images provided in the `images` folder.
 
 **Note**: You need a Hugging Face access token to run the application. You can get the token by signing up on the Hugging Face website and creating a new token from the settings page. After getting the token, you can set it as an environment variable `ACCESS_TOKEN` in your system by creating a `.env` file in the project's root directory. Check the `.env.example` file for reference.
 
 ## Usage
 
-The project can be used to serve the PaliGemma2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption. This suggests potential use cases in image captioning, video captioning, and other multimodal applications.
+The project can be used to serve the PaliGemma2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption, suggesting potential use cases in photo, video, and other multimodal applications.
 
 ## Contributing
 
