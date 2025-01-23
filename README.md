@@ -37,7 +37,7 @@ Now, you can see the model's output based on the input request. The model will g
 
 ## Usage
 
-The project can be used to serve the PaliGemma2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption, suggesting potential use cases in photo, video, and other multimodal applications.
+The project can be used to serve the PaliGemma2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption, suggesting potential use cases in semantic tagging, visual question answering, and more.
 
 ## Contributing
 
