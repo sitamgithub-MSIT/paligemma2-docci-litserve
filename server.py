@@ -21,7 +21,7 @@ class PaliGemma2API(ls.LitAPI):
     Methods:
         - setup(device): Initializes the model and processor with the specified device.
         - decode_request(request): Decodes the incoming request to extract the inputs.
-        - predict(data): Uses the model to generate a caption for the given input image and language.
+        - predict(model_inputs): Uses the model to generate a caption for the given input image and language.
         - encode_response(output): Encodes the generated response into a JSON format.
     """
 
@@ -43,19 +43,11 @@ class PaliGemma2API(ls.LitAPI):
 
     def decode_request(self, request):
         """
-        Decodes the input request to extract the image path and language.
+        Decodes the input request and prepares the model inputs.
         """
-        image_path = request["image_path"]
+        # Extract the image path and language from the request
+        image = load_image(request["image_path"])
         language = request.get("language", "en")
-        return image_path, language
-
-    def predict(self, data):
-        """
-        Generates a caption based on the provided image and language.
-        """
-        # Get the input data
-        image_path, language = data
-        image = load_image(image_path)
 
         # Prepare the prompt for the caption generation
         prompt = f"<image>caption {language}"
@@ -66,19 +58,28 @@ class PaliGemma2API(ls.LitAPI):
             .to(torch.bfloat16)
             .to(self.device)
         )
+        return model_inputs
+
+    def predict(self, model_inputs):
+        """
+        Generates a caption based on the provided model inputs.
+        """
         input_len = model_inputs["input_ids"].shape[-1]
 
         # Generate the response using the model
         with torch.inference_mode():
-            generation = self.model.generate(**model_inputs, max_new_tokens=100)
-            return generation[0][input_len:]
+            generation = self.model.generate(
+                **model_inputs, max_new_tokens=100, do_sample=False
+            )
+            generation = generation[0][input_len:]
+            decoded = self.processor.decode(generation, skip_special_tokens=True)
+            return decoded
 
     def encode_response(self, output):
         """
         Encodes the given results into a dictionary format.
         """
-        caption = self.processor.decode(output, skip_special_tokens=True)
-        return {"caption": caption}
+        return {"caption": output}
 
 
 if __name__ == "__main__":
