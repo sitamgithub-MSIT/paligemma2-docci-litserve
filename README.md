@@ -1,6 +1,8 @@
 # PaliGemma2 LitServe
 
-[PaliGemma 2](https://huggingface.co/collections/google/paligemma-2-release-67500e1e1dbfdd4dee27ba48) is an updated vision-language model that leverages **Gemma 2** and **SigLIP** for superior performance on various vision-language tasks. It processes images and text to generate multilingual text outputs. This project shows how to create a self-hosted, private API that deploys a PaliGemma2 [vision language model](https://huggingface.co/google/paligemma2-3b-ft-docci-448) with LitServe, an easy-to-use, flexible serving engine for AI models built on FastAPI.
+[![Open In Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/sitammeur/studios/paligemma2-litserve)
+
+[PaliGemma 2](https://huggingface.co/collections/google/paligemma-2-release-67500e1e1dbfdd4dee27ba48) is an updated vision-language model that leverages **Gemma 2** and **SigLIP** for superior performance on various vision-language tasks. It processes images and text to generate multilingual text outputs. This project shows how to create a self-hosted, private API that deploys a PaliGemma 2 [vision language model](https://huggingface.co/google/paligemma2-3b-ft-docci-448) with LitServe, an easy-to-use, flexible serving engine for AI models built on FastAPI.
 
 ## Project Structure
 
@@ -37,7 +39,7 @@ Now, you can see the model's output based on the input request. The model will g
 
 ## Usage
 
-The project can be used to serve the PaliGemma2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption, suggesting potential use cases in semantic tagging, visual question answering, and more.
+The project can be used to serve the PaliGemma 2 family of models using LitServe. It particularly allows you to input an image and select a language to generate a caption, suggesting potential use cases in semantic tagging, visual question answering, and more.
 
 ## Contributing
 
