@@ -20,9 +20,9 @@ class PaliGemma2API(ls.LitAPI):
 
     Methods:
         - setup(device): Initializes the model and processor with the specified device.
-        - decode_request(request): Decodes the incoming request to extract the inputs.
+        - decode_request(request): Convert the request payload to model input.
         - predict(model_inputs): Uses the model to generate a caption for the given input image and language.
-        - encode_response(output): Encodes the generated response into a JSON format.
+        - encode_response(output): Convert the model output to a response payload.
     """
 
     def setup(self, device):
@@ -43,7 +43,7 @@ class PaliGemma2API(ls.LitAPI):
 
     def decode_request(self, request):
         """
-        Decodes the input request and prepares the model inputs.
+        Convert the request payload to model input.
         """
         # Extract the image path and language from the request
         image = load_image(request["image_path"])
@@ -52,17 +52,16 @@ class PaliGemma2API(ls.LitAPI):
         # Prepare the prompt for the caption generation
         prompt = f"<image>caption {language}"
 
-        # Prepare the input data for the model
-        model_inputs = (
+        # Prepare the model inputs
+        return (
             self.processor(text=prompt, images=image, return_tensors="pt")
             .to(torch.bfloat16)
             .to(self.device)
         )
-        return model_inputs
 
     def predict(self, model_inputs):
         """
-        Generates a caption based on the provided model inputs.
+        Run inference and generate caption based on the provided model inputs.
         """
         input_len = model_inputs["input_ids"].shape[-1]
 
@@ -72,12 +71,11 @@ class PaliGemma2API(ls.LitAPI):
                 **model_inputs, max_new_tokens=100, do_sample=False
             )
             generation = generation[0][input_len:]
-            decoded = self.processor.decode(generation, skip_special_tokens=True)
-            return decoded
+            return self.processor.decode(generation, skip_special_tokens=True)
 
     def encode_response(self, output):
         """
-        Encodes the given results into a dictionary format.
+        Convert the model output to a response payload.
         """
         return {"caption": output}
 
