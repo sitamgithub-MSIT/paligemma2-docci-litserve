@@ -30,6 +30,7 @@ class PaliGemma2API(ls.LitAPI):
         Sets up the model and processor on the specified device.
         """
         model_id = "google/paligemma2-3b-ft-docci-448"
+        self.device = device
         self.model = (
             PaliGemmaForConditionalGeneration.from_pretrained(
                 model_id, torch_dtype=torch.bfloat16, token=access_token
@@ -56,7 +57,7 @@ class PaliGemma2API(ls.LitAPI):
         return (
             self.processor(text=prompt, images=image, return_tensors="pt")
             .to(torch.bfloat16)
-            .to(self.device)
+            .to(self.model.device)
         )
 
     def predict(self, model_inputs):
