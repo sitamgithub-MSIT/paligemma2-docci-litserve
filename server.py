@@ -36,7 +36,7 @@ class PaliGemma2API(ls.LitAPI):
                 model_id, torch_dtype=torch.bfloat16, token=access_token
             )
             .eval()
-            .to(device)
+            .to(self.device)
         )
         self.processor = PaliGemmaProcessor.from_pretrained(
             model_id, token=access_token
