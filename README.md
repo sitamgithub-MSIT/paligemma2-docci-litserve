@@ -1,6 +1,6 @@
 # PaliGemma2-DOCCI LitServe
 
-[![Open In Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/sitammeur/studios/deploy-paligemma-2-vision-language-model)
+[![Open In Studio](https://pl-bolts-doc-images.s3.us-east-2.amazonaws.com/app-2/studio-badge.svg)](https://lightning.ai/sitammeur/studios/deploy-docci-fine-tuned-paligemma-2-vision-language-model)
 
 [PaliGemma 2](https://huggingface.co/collections/google/paligemma-2-release-67500e1e1dbfdd4dee27ba48) is an updated vision-language model that leverages **Gemma 2** and **SigLIP** for superior performance on various vision-language tasks. It processes images and text to generate multilingual text outputs. This project shows how to create a self-hosted, private API that deploys PaliGemma 2's [fine-tuned variant](https://huggingface.co/google/paligemma2-3b-ft-docci-448) on the DOCCI dataset with LitServe, an easy-to-use, flexible serving engine for AI models built on FastAPI.
 
