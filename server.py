@@ -14,9 +14,9 @@ load_dotenv()
 access_token = os.environ.get("ACCESS_TOKEN")
 
 
-class PaliGemma2API(ls.LitAPI):
+class PaliGemma2DOCCIAPI(ls.LitAPI):
     """
-    PaliGemma2API is a subclass of ls.LitAPI that provides an interface to the PaliGemma2 family of models.
+    PaliGemma2DOCCIAPI is a subclass of ls.LitAPI that provides an interface to the finetuned PaliGemma2 model on the DOCCI dataset.
 
     Methods:
         - setup(device): Initializes the model and processor with the specified device.
@@ -82,7 +82,7 @@ class PaliGemma2API(ls.LitAPI):
 
 
 if __name__ == "__main__":
-    # Create an instance of the PaliGemma2API class and run the server
-    api = PaliGemma2API()
+    # Create an instance of the PaliGemma2DOCCIAPI class and run the server
+    api = PaliGemma2DOCCIAPI()
     server = ls.LitServer(api, track_requests=True)
     server.run(port=8000)
